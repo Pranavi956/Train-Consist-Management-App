@@ -5,28 +5,39 @@ public class TrainConsistApp {
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC3 - Track Unique Bogie IDs");
+        System.out.println("UC4 - Maintain Ordered Bogie Consist");
         System.out.println("======================================\n");
 
-        // Create a Set to store unique bogie IDs
-        Set<String> bogies = new HashSet<>();
+        // Create LinkedList for train consist
+        List<String> trainConsist = new LinkedList<>();
 
-        // ---------------- ADD IDs (including duplicates) ----------------
-        bogies.add("BG101");
-        bogies.add("BG102");
-        bogies.add("BG103");
-        bogies.add("BG104");
+        // ---------------- ADD BOGIES ----------------
+        trainConsist.add("Engine");
+        trainConsist.add("Sleeper");
+        trainConsist.add("AC");
+        trainConsist.add("Cargo");
+        trainConsist.add("Guard");
 
-        // Adding duplicates intentionally
-        bogies.add("BG101"); // duplicate
-        bogies.add("BG102"); // duplicate
+        System.out.println("Initial Train Consist:");
+        System.out.println(trainConsist);
 
-        // ---------------- DISPLAY UNIQUE IDs ----------------
-        System.out.println("Unique Bogie IDs:");
-        System.out.println(bogies);
+        // ---------------- INSERT AT POSITION ----------------
+        trainConsist.add(2, "Pantry Car");
 
-        System.out.println("\nTotal unique bogies: " + bogies.size());
+        System.out.println("\nAfter inserting Pantry Car at position 2:");
+        System.out.println(trainConsist);
 
-        System.out.println("\n(Note: Duplicate IDs are automatically ignored)");
+        // ---------------- REMOVE FIRST & LAST ----------------
+        ((LinkedList<String>) trainConsist).removeFirst();
+        ((LinkedList<String>) trainConsist).removeLast();
+
+        System.out.println("\nAfter removing first and last bogies:");
+        System.out.println(trainConsist);
+
+        // ---------------- FINAL STATE ----------------
+        System.out.println("\nFinal Ordered Train Consist:");
+        System.out.println(trainConsist);
+
+        System.out.println("\nProgram continues...");
     }
 }
