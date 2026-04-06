@@ -5,37 +5,28 @@ public class TrainConsistApp {
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC2 - Add Passenger Bogies to Train");
+        System.out.println("UC3 - Track Unique Bogie IDs");
         System.out.println("======================================\n");
 
-        // Create ArrayList for passenger bogies
-        List<String> passengerBogies = new ArrayList<>();
+        // Create a Set to store unique bogie IDs
+        Set<String> bogies = new HashSet<>();
 
-        // ---------------- CREATE (Add bogies) ----------------
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        // ---------------- ADD IDs (including duplicates) ----------------
+        bogies.add("BG101");
+        bogies.add("BG102");
+        bogies.add("BG103");
+        bogies.add("BG104");
 
-        System.out.println("Bogies after addition:");
-        System.out.println(passengerBogies);
+        // Adding duplicates intentionally
+        bogies.add("BG101"); // duplicate
+        bogies.add("BG102"); // duplicate
 
-        // ---------------- DELETE (Remove bogie) ----------------
-        passengerBogies.remove("AC Chair");
+        // ---------------- DISPLAY UNIQUE IDs ----------------
+        System.out.println("Unique Bogie IDs:");
+        System.out.println(bogies);
 
-        System.out.println("\nAfter removing AC Chair:");
-        System.out.println(passengerBogies);
+        System.out.println("\nTotal unique bogies: " + bogies.size());
 
-        // ---------------- READ (Check existence) ----------------
-        if (passengerBogies.contains("Sleeper")) {
-            System.out.println("\nSleeper bogie exists in the train.");
-        } else {
-            System.out.println("\nSleeper bogie not found.");
-        }
-
-        // ---------------- FINAL STATE ----------------
-        System.out.println("\nFinal Train Consist:");
-        System.out.println(passengerBogies);
-
-        System.out.println("\nProgram continues...");
+        System.out.println("\n(Note: Duplicate IDs are automatically ignored)");
     }
 }
