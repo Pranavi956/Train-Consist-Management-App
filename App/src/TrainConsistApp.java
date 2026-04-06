@@ -1,26 +1,37 @@
-import java.util.regex.*;
+import java.util.*;
+
+class GoodsBogie {
+    String type;
+    String cargo;
+
+    GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
+    }
+}
 
 public class TrainConsistApp {
 
-    public static boolean isValidTrainID(String id) {
-        return Pattern.matches("TRN-\\d{4}", id);
-    }
-
-    public static boolean isValidCargoCode(String code) {
-        return Pattern.matches("PET-[A-Z]{2}", code);
+    public static boolean isSafe(List<GoodsBogie> bogies) {
+        return bogies.stream().allMatch(b ->
+                !(b.type.equals("Cylindrical") && !b.cargo.equals("Petroleum"))
+        );
     }
 
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC11 - Regex Validation");
+        System.out.println("UC12 - Safety Compliance Check");
         System.out.println("======================================\n");
 
-        String trainId = "TRN-1234";
-        String cargoCode = "PET-AB";
+        List<GoodsBogie> bogies = Arrays.asList(
+                new GoodsBogie("Cylindrical", "Petroleum"),
+                new GoodsBogie("Rectangular", "Coal")
+        );
 
-        System.out.println("Train ID Valid: " + isValidTrainID(trainId));
-        System.out.println("Cargo Code Valid: " + isValidCargoCode(cargoCode));
+        boolean safe = isSafe(bogies);
+
+        System.out.println("Train Safety Status: " + safe);
 
         System.out.println("\nProgram continues...");
     }
