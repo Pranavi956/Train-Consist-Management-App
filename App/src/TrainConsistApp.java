@@ -1,19 +1,29 @@
-class InvalidCapacityException extends Exception {
-    public InvalidCapacityException(String message) {
+class CargoSafetyException extends RuntimeException {
+    public CargoSafetyException(String message) {
         super(message);
     }
 }
 
-class Bogie {
-    String name;
-    int capacity;
+class GoodsBogie {
+    String type;
+    String cargo;
 
-    Bogie(String name, int capacity) throws InvalidCapacityException {
-        if (capacity <= 0) {
-            throw new InvalidCapacityException("Capacity must be greater than zero");
+    GoodsBogie(String type) {
+        this.type = type;
+    }
+
+    public void assignCargo(String cargo) {
+        try {
+            if (type.equals("Rectangular") && cargo.equals("Petroleum")) {
+                throw new CargoSafetyException("Unsafe cargo assignment");
+            }
+            this.cargo = cargo;
+        } catch (CargoSafetyException e) {
+            System.out.println("Error: " + e.getMessage());
+            this.cargo = null;
+        } finally {
+            System.out.println("Assignment attempt completed");
         }
-        this.name = name;
-        this.capacity = capacity;
     }
 }
 
@@ -22,17 +32,11 @@ public class TrainConsistApp {
     public static void main(String[] args) {
 
         System.out.println("======================================");
-        System.out.println("UC14 - Custom Exception Handling");
+        System.out.println("UC15 - Safe Cargo Assignment");
         System.out.println("======================================\n");
 
-        try {
-            Bogie b1 = new Bogie("Sleeper", 72);
-            System.out.println("Bogie created: " + b1.name);
-
-            Bogie b2 = new Bogie("AC Chair", -10); // invalid
-        } catch (InvalidCapacityException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        GoodsBogie b = new GoodsBogie("Rectangular");
+        b.assignCargo("Petroleum"); // unsafe
 
         System.out.println("\nProgram continues...");
     }
