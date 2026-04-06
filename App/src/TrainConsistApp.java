@@ -4,23 +4,38 @@ public class TrainConsistApp {
 
     public static void main(String[] args) {
 
-        // Display welcome banner
         System.out.println("======================================");
-        System.out.println("=== Train Consist Management App ===");
+        System.out.println("UC2 - Add Passenger Bogies to Train");
         System.out.println("======================================\n");
 
-        // Create dynamic list for train bogies
-        List<String> trainConsist = new ArrayList<>();
+        // Create ArrayList for passenger bogies
+        List<String> passengerBogies = new ArrayList<>();
 
-        // Display initialization message
-        System.out.println("Train initialized successfully...");
+        // ---------------- CREATE (Add bogies) ----------------
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
 
-        // Display initial bogie count
-        System.out.println("Current number of bogies: " + trainConsist.size());
+        System.out.println("Bogies after addition:");
+        System.out.println(passengerBogies);
 
-        // Display current state
-        System.out.println("Current Train Consist: " + trainConsist);
+        // ---------------- DELETE (Remove bogie) ----------------
+        passengerBogies.remove("AC Chair");
 
-        System.out.println("\nProgram is ready for further operations...");
+        System.out.println("\nAfter removing AC Chair:");
+        System.out.println(passengerBogies);
+
+        // ---------------- READ (Check existence) ----------------
+        if (passengerBogies.contains("Sleeper")) {
+            System.out.println("\nSleeper bogie exists in the train.");
+        } else {
+            System.out.println("\nSleeper bogie not found.");
+        }
+
+        // ---------------- FINAL STATE ----------------
+        System.out.println("\nFinal Train Consist:");
+        System.out.println(passengerBogies);
+
+        System.out.println("\nProgram continues...");
     }
 }
